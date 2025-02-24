@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="003" author="tamas">
+        <createTable tableName="transactions">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="sender_id" type="BIGINT">
+                <constraints foreignKeyName="fk_transactions_sender" references="accounts(id)"/>
+            </column>
+            <column name="recipient_id" type="BIGINT">
+                <constraints foreignKeyName="fk_transactions_recipient" references="accounts(id)"/>
+            </column>
+            <column name="amount" type="DECIMAL(15,2)"/>
+            <column name="timestamp" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

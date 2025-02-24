@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="001" author="tamas">
+        <createTable tableName="accounts">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="balance" type="DECIMAL(15,2)">
+                <constraints nullable="false"/>
+            </column>
+            <!-- Add the version column for optimistic locking -->
+            <column name="version" type="BIGINT" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <!-- Insert Sample Accounts -->
+    <changeSet id="002" author="tamas">
+        <insert tableName="accounts">
+            <column name="id" value="1"/>
+            <column name="balance" value="1000.00"/>
+            <column name="version" value="0"/>
+        </insert>
+        <insert tableName="accounts">
+            <column name="id" value="2"/>
+            <column name="balance" value="500.00"/>
+            <column name="version" value="0"/>
+        </insert>
+        <insert tableName="accounts">
+            <column name="id" value="3"/>
+            <column name="balance" value="1500.00"/>
+            <column name="version" value="0"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

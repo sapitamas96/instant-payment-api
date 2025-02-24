@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS accounts (
+    id SERIAL PRIMARY KEY,
+    balance DECIMAL(15,2) NOT NULL
+);
+
+INSERT INTO accounts (id, balance) VALUES (1, 1000.00) ON CONFLICT (id) DO NOTHING;
+INSERT INTO accounts (id, balance) VALUES (2, 500.00) ON CONFLICT (id) DO NOTHING;
+INSERT INTO accounts (id, balance) VALUES (3, 1500.00) ON CONFLICT (id) DO NOTHING;
